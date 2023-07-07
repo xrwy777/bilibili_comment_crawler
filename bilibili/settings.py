@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = "bilibili.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "bilibili (+https://www.bilibili.com/video/BV1Zs4y1o7tY/)"
+USER_AGENT = "bilibili (+https://www.bilibili.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False

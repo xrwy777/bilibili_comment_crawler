@@ -8,6 +8,7 @@
 from itemadapter import ItemAdapter
 import os
 import time
+from spiders.comment import title
 
 class MyscrapyPipeline:
 
@@ -23,9 +24,10 @@ class MyscrapyPipeline:
     def process_item(self, item, spider):
         print("--> TXT : write to text file…………")
         # 获得系统时间
-        now = time.strftime('%Y-%m-%d', time.localtime())
+        now = time.strftime('%Y-%m-%d-%H', time.localtime())
         # 设置文件名称
-        txtFilename = 'bilibili_' + now + '.txt'
+        txtFilename = title + ' ' + now + '.txt'
+        self.txtFilename = txtFilename
         # 进行文件的写入操作
         try:
             with open(self.folderName + os.sep + txtFilename, 'a') as fp:
@@ -44,3 +46,4 @@ class MyscrapyPipeline:
             # 关闭文件
             fp.close()
         return item
+    

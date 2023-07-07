@@ -15,6 +15,7 @@ import time
 import xlwt
 import xlrd
 from xlutils.copy import copy
+from spiders.comment import title
 
 class MyscrapyPipeline:
 
@@ -28,9 +29,12 @@ class MyscrapyPipeline:
         
         # 创建Excel文件
         # 获取当前系统时间
-        now = time.strftime('%Y-%m-%d', time.localtime())
+        now = time.strftime('%Y-%m-%d-%H', time.localtime())
         # 设置文件名称
-        excelFileName = 'bilibili_' + now + '.xls'
+        print(title)
+        excelFileName = title + ' ' + now + '.xls'
+        self.excelFileName = excelFileName
+        print(excelFileName)
         # 获得最终文件路径
         self.excelPath = self.folderName + os.sep + excelFileName
         # 创建工作薄

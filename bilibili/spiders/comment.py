@@ -1,7 +1,20 @@
 import json
 import time
+from requests import Response
 import scrapy
 from bilibili.items import CommentItem
+import sys
+sys.path.append("...")
+from main import url
+import requests
+from lxml import etree
+
+
+r = requests.get(url)
+html = etree.HTML(r.text)
+title = html.xpath('//*[@id="viewbox_report"]/h1/text()')[0]
+print('Title:', title)
+
 
 def bv2av(x):
     import re
@@ -28,8 +41,7 @@ class CommentSpider(scrapy.Spider):
     name = "comment"
     allowed_domains = ["bilibili.com"]
     offset = 1
-    # 输入要爬取的网址
-    old_url = "https://www.bilibili.com/video/BV1R84y1P71P/"
+    old_url = url
     aid = bv2av(old_url)
     url = 'https://api.bilibili.com/x/v2/reply/main?csrf=f82f3a501a426bc37af66fa0e68f3391&mode=3&next={}&oid={}&plat=1&seek_rpid=&type=1'
     start_urls = [url.format(str(offset),str(aid))]
@@ -55,3 +67,7 @@ class CommentSpider(scrapy.Spider):
             yield scrapy.Request(self.url.format(self.offset,self.aid), callback = self.parse)
         else:
             pass
+        
+
+        
+       
