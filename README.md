@@ -15,7 +15,7 @@
 克隆 repo，在 Python 环境中安装 requirements.txt
 
 ```bash
-git clone https://github.com/ultralytics/yolov5  # clone
+git clone https://github.com/xrwy777/bilibili_comment_crawler.git  # clone
 cd bilibili_comment_crawler
 pip install -r requirements.txt  # install
 ```
